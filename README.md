@@ -11,5 +11,52 @@
 
 
 
+ # TR8x8 Leadscrew
+
+Models of a four-start TR8x8 trapezoidal leadscrew, Tr 8×8 (P2), in right-hand and left-hand versions, and the solid where the two overlap.
+
+## What's in the project
+
+- **TR8x8 Leadscrew**: the right-hand screw, with a bill of materials entry.
+- **TR8x8 Leadscrew Left Hand**: the same screw mirrored, with its own bill of materials entry.
+- **Length**: one length input, in mm, for both screws. It's kept at 8 mm, one full lead, so the Intersection computes in reasonable time; longer screws make that boolean much slower.
+- **Assembly**: the two screws side by side, with the left-hand screw moved 20 mm along X. This is the project's output.
+- **Intersection**: the solid the right-hand and left-hand screws share, moved up 8 mm.
+
+## The TR8x8 thread profile
+
+ISO 2904 (DIN 103) metric trapezoidal thread, basic profile of the screw:
+
+| | Value |
+|---|---|
+| Designation | Tr 8×8 (P2) |
+| Major diameter, d | 8 mm |
+| Pitch, P | 2 mm |
+| Starts | 4 |
+| Lead (P × starts) | 8 mm |
+| Included flank angle | 30° (15° each flank) |
+| Flank contact depth, H1 = 0.5P | 1.0 mm |
+| Crest clearance, ac | 0.25 mm |
+| Thread depth, h3 = 0.5P + ac | 1.25 mm |
+| Pitch diameter, d2 = d − 0.5P | 7.0 mm |
+| Minor diameter, d3 = d − 2·h3 | 5.5 mm |
+| Crest flat at d, 0.366P | 0.732 mm |
+| Groove-bottom flat at d3, 0.366P − 2·ac·tan 15° | 0.598 mm |
+| Groove-bottom radius, R1 | up to 0.125 mm (not modelled) |
+| Lead angle at d2 | about 20° |
+
+The profile is defined in a plane through the screw's axis. The models are the basic size, with no tolerance class (such as 7e) applied.
+
+## How the screws are modelled
+
+Each screw is one Code atom. It draws the screw's cross-section (crest, flank, groove bottom, flank for each of the 4 starts) and extrudes it with one full turn of twist per 8 mm lead, which makes a true helical thread. The teeth are drawn slightly deeper than the thread, then trimmed by a cylinder at the major diameter and fused to a core cylinder at the minor diameter. Crest and groove bottom are therefore true cylinders, and only the flanks are swept surfaces, which keeps booleans between the two screws fast enough to compute. The flanks are straight in a section through the axis, as ISO specifies. The left-hand screw is the right-hand one mirrored.
+
+The Code atoms take the major diameter, pitch, number of starts and thread depth as inputs, so the same atom can make other single- or multi-start trapezoidal threads.
  
+
+![readme](/readmeid-1364124.svg?v=nugz55e)
+
+
+
+
 
