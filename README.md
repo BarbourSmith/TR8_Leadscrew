@@ -52,10 +52,6 @@ The profile is defined in a plane through the screw's axis. The models are the b
 Each screw is one Code atom. It draws the screw's cross-section (crest, flank, groove bottom, flank for each of the 4 starts) and extrudes it with one full turn of twist per 8 mm lead, which makes a true helical thread. The teeth are drawn slightly deeper than the thread, then trimmed by a cylinder at the major diameter and fused to a core cylinder at the minor diameter. Crest and groove bottom are therefore true cylinders, and only the flanks are swept surfaces, which keeps booleans between the two screws fast enough to compute. The flanks are straight in a section through the axis, as ISO specifies. The left-hand screw is the right-hand one mirrored.
 
 The Code atoms take the major diameter, pitch, number of starts and thread depth as inputs, so the same atom can make other single- or multi-start trapezoidal threads.
- 
-
-![readme](/readmeid-1364124.svg?v=n489nsy)
-
 
 
 
