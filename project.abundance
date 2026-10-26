@@ -1402,8 +1402,8 @@
         },
         {
           "name": "yDist",
-          "ioValue": 20,
-          "currentEquation": "20"
+          "ioValue": 10,
+          "currentEquation": "10"
         },
         {
           "name": "zDist",
@@ -1428,8 +1428,8 @@
         },
         {
           "name": "yDist",
-          "ioValue": 40,
-          "currentEquation": "40"
+          "ioValue": 20,
+          "currentEquation": "20"
         },
         {
           "name": "zDist",
@@ -1593,286 +1593,6 @@
               "notKeepOut": false
             },
             {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.3,
-              "uniqueID": "id-1364835",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1364829",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1364830",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1364831",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1364832",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1364833",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1364834",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1364829",
-                  "ap2ID": "id-1364830"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364831",
-                  "ap2ID": "id-1364832"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364832",
-                  "ap2ID": "id-1364833"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1364834",
-                  "ap2ID": "id-1364829"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051316797
-            },
-            {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.7,
-              "uniqueID": "id-1364862",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1364856",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1364857",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1364858",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1364859",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1364860",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1364861",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1364856",
-                  "ap2ID": "id-1364857"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364858",
-                  "ap2ID": "id-1364859"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364859",
-                  "ap2ID": "id-1364860"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1364861",
-                  "ap2ID": "id-1364856"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051316945
-            },
-            {
               "atomType": "Intersection",
               "x": 0.8,
               "y": 0.5,
@@ -1885,6 +1605,30 @@
                 {
                   "name": "geometry2",
                   "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.7,
+              "uniqueID": "id-1365055",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": 0
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
                 }
               ]
             }
@@ -1906,36 +1650,31 @@
               "ap2ID": "id-1364825"
             },
             {
-              "ap2Name": "Geometry",
-              "ap1ID": "id-1364822",
-              "ap2ID": "id-1364835"
-            },
-            {
-              "ap2Name": "Geometry",
-              "ap1ID": "id-1364825",
-              "ap2ID": "id-1364862"
-            },
-            {
               "ap2Name": "geometry1",
-              "ap1ID": "id-1364835",
+              "ap1ID": "id-1364822",
               "ap2ID": "id-1364882"
             },
             {
-              "ap2Name": "geometry2",
-              "ap1ID": "id-1364862",
-              "ap2ID": "id-1364882"
+              "ap2Name": "geometry",
+              "ap1ID": "id-1364825",
+              "ap2ID": "id-1365055"
             },
             {
               "ap2Name": "number or geometry",
               "ap1ID": "id-1364882",
               "ap2ID": "id-1364814"
+            },
+            {
+              "ap2Name": "geometry2",
+              "ap1ID": "id-1365055",
+              "ap2ID": "id-1364882"
             }
           ],
           "fileTypeVersion": 1
         },
         {
           "atomType": "Molecule",
-          "x": 0.4,
+          "x": 0.3,
           "y": 0.5,
           "uniqueID": "id-1364886",
           "name": "2-Start Overlap",
@@ -2026,286 +1765,6 @@
               "notKeepOut": false
             },
             {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.3,
-              "uniqueID": "id-1364909",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1364903",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1364904",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1364905",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1364906",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1364907",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1364908",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1364903",
-                  "ap2ID": "id-1364904"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364905",
-                  "ap2ID": "id-1364906"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364906",
-                  "ap2ID": "id-1364907"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1364908",
-                  "ap2ID": "id-1364903"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051316988
-            },
-            {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.7,
-              "uniqueID": "id-1364936",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1364930",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1364931",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1364932",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1364933",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1364934",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1364935",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1364930",
-                  "ap2ID": "id-1364931"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364932",
-                  "ap2ID": "id-1364933"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364933",
-                  "ap2ID": "id-1364934"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1364935",
-                  "ap2ID": "id-1364930"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051317031
-            },
-            {
               "atomType": "Intersection",
               "x": 0.8,
               "y": 0.5,
@@ -2318,6 +1777,54 @@
                 {
                   "name": "geometry2",
                   "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.3,
+              "uniqueID": "id-1365061",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": 0
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
+                }
+              ]
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.7,
+              "uniqueID": "id-1365067",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
                 }
               ]
             }
@@ -2339,29 +1846,29 @@
               "ap2ID": "id-1364899"
             },
             {
-              "ap2Name": "Geometry",
+              "ap2Name": "geometry",
               "ap1ID": "id-1364896",
-              "ap2ID": "id-1364909"
+              "ap2ID": "id-1365061"
             },
             {
-              "ap2Name": "Geometry",
+              "ap2Name": "geometry",
               "ap1ID": "id-1364899",
-              "ap2ID": "id-1364936"
-            },
-            {
-              "ap2Name": "geometry1",
-              "ap1ID": "id-1364909",
-              "ap2ID": "id-1364956"
-            },
-            {
-              "ap2Name": "geometry2",
-              "ap1ID": "id-1364936",
-              "ap2ID": "id-1364956"
+              "ap2ID": "id-1365067"
             },
             {
               "ap2Name": "number or geometry",
               "ap1ID": "id-1364956",
               "ap2ID": "id-1364888"
+            },
+            {
+              "ap2Name": "geometry1",
+              "ap1ID": "id-1365061",
+              "ap2ID": "id-1364956"
+            },
+            {
+              "ap2Name": "geometry2",
+              "ap1ID": "id-1365067",
+              "ap2ID": "id-1364956"
             }
           ],
           "fileTypeVersion": 1
@@ -2459,286 +1966,6 @@
               "notKeepOut": false
             },
             {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.3,
-              "uniqueID": "id-1364983",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1364977",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1364978",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1364979",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1364980",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1364981",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1364982",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1364977",
-                  "ap2ID": "id-1364978"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364979",
-                  "ap2ID": "id-1364980"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1364980",
-                  "ap2ID": "id-1364981"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1364982",
-                  "ap2ID": "id-1364977"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051317074
-            },
-            {
-              "atomType": "GitHubMolecule",
-              "x": 0.6,
-              "y": 0.7,
-              "uniqueID": "id-1365010",
-              "name": "Center_XY",
-              "ioValues": [
-                {
-                  "name": "Geometry",
-                  "ioValue": "__GEOMETRY_INPUT__"
-                }
-              ],
-              "topLevel": false,
-              "allAtoms": [
-                {
-                  "atomType": "Code",
-                  "x": 0.6,
-                  "y": 0.4,
-                  "uniqueID": "id-1365004",
-                  "ioValues": [
-                    {
-                      "name": "A",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ],
-                  "interpreterVersion": 1,
-                  "code": "/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A: Assembly) {\n  if (!A) {\n    // Nothing to do if no input provided\n    return null;\n  }\n\n  const total = A.leafCount();\n\n  // Pass 1: accumulate the XY bounding box across every part of A.\n  let minX = Infinity;\n  let minY = Infinity;\n  let maxX = -Infinity;\n  let maxY = -Infinity;\n  let measured = 0;\n  A.onLeafs((leaf) => {\n    progress(`measuring part ${++measured}/${total}`);\n    // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n    // shapes and 2D drawings.\n    const [min, max] = leaf.geometry.boundingBox.bounds;\n    minX = Math.min(minX, min[0]);\n    minY = Math.min(minY, min[1]);\n    maxX = Math.max(maxX, max[0]);\n    maxY = Math.max(maxY, max[1]);\n    return leaf;\n  });\n\n  // Translation that moves the bounding box center to the origin in XY.\n  const dx = -(minX + maxX) / 2;\n  const dy = -(minY + maxY) / 2;\n\n  // Pass 2: move every part by the same offset.\n  let moved = 0;\n  return A.onLeafs((leaf) => {\n    progress(`moving part ${++moved}/${total}`);\n    const geometry = leaf.is2D()\n      ? leaf.geometry.clone().translate(dx, dy)\n      : leaf.geometry.clone().translate(dx, dy, 0);\n    return new Assembly({ ...leaf, geometry });\n  });\n}",
-                  "compiledCode": "\"use strict\";\n/**\n * Recenters geometry input \"A\" in the XY plane based on its bounding box.\n * Z is left unchanged.\n */\nfunction run(A) {\n    if (!A) {\n        // Nothing to do if no input provided\n        return null;\n    }\n    const total = A.leafCount();\n    // Pass 1: accumulate the XY bounding box across every part of A.\n    let minX = Infinity;\n    let minY = Infinity;\n    let maxX = -Infinity;\n    let maxY = -Infinity;\n    let measured = 0;\n    A.onLeafs((leaf) => {\n        progress(`measuring part ${++measured}/${total}`);\n        // bounds is [[minX, minY, (minZ)], [maxX, maxY, (maxZ)]] for both 3D\n        // shapes and 2D drawings.\n        const [min, max] = leaf.geometry.boundingBox.bounds;\n        minX = Math.min(minX, min[0]);\n        minY = Math.min(minY, min[1]);\n        maxX = Math.max(maxX, max[0]);\n        maxY = Math.max(maxY, max[1]);\n        return leaf;\n    });\n    // Translation that moves the bounding box center to the origin in XY.\n    const dx = -(minX + maxX) / 2;\n    const dy = -(minY + maxY) / 2;\n    // Pass 2: move every part by the same offset.\n    let moved = 0;\n    return A.onLeafs((leaf) => {\n        progress(`moving part ${++moved}/${total}`);\n        const geometry = leaf.is2D()\n            ? leaf.geometry.clone().translate(dx, dy)\n            : leaf.geometry.clone().translate(dx, dy, 0);\n        return new Assembly({ ...leaf, geometry });\n    });\n}\n"
-                },
-                {
-                  "atomType": "Output",
-                  "x": 1,
-                  "y": 0.5,
-                  "uniqueID": "id-1365005",
-                  "ioValues": [
-                    {
-                      "name": "number or geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Rectangle",
-                  "x": 0.2,
-                  "y": 0.6,
-                  "uniqueID": "id-1365006",
-                  "ioValues": [
-                    {
-                      "name": "x length",
-                      "ioValue": 10
-                    },
-                    {
-                      "name": "y length",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Extrude",
-                  "x": 0.3,
-                  "y": 0.6,
-                  "uniqueID": "id-1365007",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "height",
-                      "ioValue": 10
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Move",
-                  "x": 0.5,
-                  "y": 0.6,
-                  "uniqueID": "id-1365008",
-                  "ioValues": [
-                    {
-                      "name": "geometry",
-                      "ioValue": "__GEOMETRY_INPUT__"
-                    },
-                    {
-                      "name": "xDist",
-                      "ioValue": 50
-                    },
-                    {
-                      "name": "yDist",
-                      "ioValue": 30
-                    },
-                    {
-                      "name": "zDist",
-                      "ioValue": 0
-                    }
-                  ]
-                },
-                {
-                  "atomType": "Input",
-                  "x": 0,
-                  "y": 0.2,
-                  "uniqueID": "id-1365009",
-                  "name": "Geometry",
-                  "type": "geometry",
-                  "options": []
-                }
-              ],
-              "allConnectors": [
-                {
-                  "ap2Name": "number or geometry",
-                  "ap1ID": "id-1365004",
-                  "ap2ID": "id-1365005"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1365006",
-                  "ap2ID": "id-1365007"
-                },
-                {
-                  "ap2Name": "geometry",
-                  "ap1ID": "id-1365007",
-                  "ap2ID": "id-1365008"
-                },
-                {
-                  "ap2Name": "A",
-                  "ap1ID": "id-1365009",
-                  "ap2ID": "id-1365004"
-                }
-              ],
-              "parentRepo": {
-                "owner": "BarbourSmith",
-                "repoName": "Center_XY",
-                "privateRepo": false,
-                "dateModified": "739887"
-              },
-              "unitsKey": "MM",
-              "fileTypeVersion": 1,
-              "scaleToProjectUnits": true,
-              "lastReloadedFromGithubAt": 1793051317116
-            },
-            {
               "atomType": "Intersection",
               "x": 0.8,
               "y": 0.5,
@@ -2751,6 +1978,54 @@
                 {
                   "name": "geometry2",
                   "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.3,
+              "uniqueID": "id-1365073",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": 0
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -40
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
+                }
+              ]
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.7,
+              "uniqueID": "id-1365079",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -40
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
                 }
               ]
             }
@@ -2772,29 +2047,29 @@
               "ap2ID": "id-1364973"
             },
             {
-              "ap2Name": "Geometry",
+              "ap2Name": "geometry",
               "ap1ID": "id-1364970",
-              "ap2ID": "id-1364983"
+              "ap2ID": "id-1365073"
             },
             {
-              "ap2Name": "Geometry",
+              "ap2Name": "geometry",
               "ap1ID": "id-1364973",
-              "ap2ID": "id-1365010"
-            },
-            {
-              "ap2Name": "geometry1",
-              "ap1ID": "id-1364983",
-              "ap2ID": "id-1365030"
-            },
-            {
-              "ap2Name": "geometry2",
-              "ap1ID": "id-1365010",
-              "ap2ID": "id-1365030"
+              "ap2ID": "id-1365079"
             },
             {
               "ap2Name": "number or geometry",
               "ap1ID": "id-1365030",
               "ap2ID": "id-1364962"
+            },
+            {
+              "ap2Name": "geometry1",
+              "ap1ID": "id-1365073",
+              "ap2ID": "id-1365030"
+            },
+            {
+              "ap2Name": "geometry2",
+              "ap1ID": "id-1365079",
+              "ap2ID": "id-1365030"
             }
           ],
           "fileTypeVersion": 1
