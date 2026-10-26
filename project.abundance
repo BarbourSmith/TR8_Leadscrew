@@ -50,7 +50,7 @@
     },
     {
       "atomType": "Molecule",
-      "x": 0.3,
+      "x": 0.2,
       "y": 0.2,
       "uniqueID": "id-1364362",
       "name": "4-Start Leadscrews (TR8x8)",
@@ -1879,8 +1879,8 @@
         },
         {
           "atomType": "Molecule",
-          "x": 0.4,
-          "y": 0.8,
+          "x": 0.3,
+          "y": 0.7,
           "uniqueID": "id-1364960",
           "name": "1-Start Overlap",
           "ioValues": [
@@ -2104,8 +2104,8 @@
         },
         {
           "atomType": "Move",
-          "x": 0.6,
-          "y": 0.8,
+          "x": 0.5,
+          "y": 0.7,
           "uniqueID": "id-1365040",
           "ioValues": [
             {
@@ -2160,8 +2160,8 @@
         },
         {
           "atomType": "Molecule",
-          "x": 0.4,
-          "y": 1,
+          "x": 0.3,
+          "y": 0.9,
           "uniqueID": "id-1365182",
           "name": "4-Start 2-Flute Overlap",
           "ioValues": [
@@ -2198,7 +2198,7 @@
               "x": 0.3,
               "y": 0.5,
               "uniqueID": "id-1365189",
-              "name": "Extract Tag",
+              "name": "Extract 4-Start 2-Flute",
               "ioValues": [
                 {
                   "name": "geometry",
@@ -2206,7 +2206,9 @@
                 }
               ],
               "tagIndex": 0,
-              "selectedTags": [],
+              "selectedTags": [
+                "4-Start 2-Flute"
+              ],
               "includeUntagged": false,
               "notKeepOut": false
             },
@@ -2215,7 +2217,7 @@
               "x": 0.4,
               "y": 0.3,
               "uniqueID": "id-1365192",
-              "name": "Extract Tag",
+              "name": "Extract Right Hand Thread",
               "ioValues": [
                 {
                   "name": "geometry",
@@ -2223,7 +2225,9 @@
                 }
               ],
               "tagIndex": 0,
-              "selectedTags": [],
+              "selectedTags": [
+                "Right Hand Thread"
+              ],
               "includeUntagged": false,
               "notKeepOut": false
             },
@@ -2232,7 +2236,7 @@
               "x": 0.4,
               "y": 0.7,
               "uniqueID": "id-1365195",
-              "name": "Extract Tag",
+              "name": "Extract Left Hand Thread",
               "ioValues": [
                 {
                   "name": "geometry",
@@ -2240,7 +2244,9 @@
                 }
               ],
               "tagIndex": 0,
-              "selectedTags": [],
+              "selectedTags": [
+                "Left Hand Thread"
+              ],
               "includeUntagged": false,
               "notKeepOut": false
             },
@@ -2356,7 +2362,7 @@
         {
           "atomType": "Move",
           "x": 0.6,
-          "y": 1,
+          "y": 0.9,
           "uniqueID": "id-1365214",
           "ioValues": [
             {
