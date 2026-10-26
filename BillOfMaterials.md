@@ -4,4 +4,6 @@
  |----|----------|-----|-----|
 |TR8x8 leadscrew, 8 mm lead, 4-start, stainless steel|1|$0.00||
 |TR8x8 leadscrew, left-hand, 8 mm lead, 4-start, stainless steel|1|$0.00||
-|Total: |2|$0.00| |
+|TR8x4 leadscrew, 4 mm lead, 2-start, stainless steel|1|$0.00||
+|TR8x4 leadscrew, left-hand, 4 mm lead, 2-start, stainless steel|1|$0.00||
+|Total: |4|$0.00| |
