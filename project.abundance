@@ -943,7 +943,7 @@
     {
       "atomType": "Molecule",
       "x": 0.1,
-      "y": 0.9,
+      "y": 0.8,
       "uniqueID": "id-1364492",
       "name": "1-Start Leadscrews (TR8x2)",
       "ioValues": [
@@ -1414,7 +1414,7 @@
     {
       "atomType": "Move",
       "x": 0.3,
-      "y": 0.9,
+      "y": 0.8,
       "uniqueID": "id-1364603",
       "ioValues": [
         {
@@ -3177,8 +3177,8 @@
     },
     {
       "atomType": "Molecule",
-      "x": 0.3,
-      "y": 1,
+      "x": 0.1,
+      "y": 0.9,
       "uniqueID": "id-1365324",
       "name": "3-Start Leadscrews (TR8x6)",
       "ioValues": [
@@ -3640,8 +3640,8 @@
     },
     {
       "atomType": "Move",
-      "x": 0.5,
-      "y": 1,
+      "x": 0.4,
+      "y": 0.9,
       "uniqueID": "id-1365412",
       "ioValues": [
         {
@@ -3664,7 +3664,7 @@
     },
     {
       "atomType": "Molecule",
-      "x": 0.7,
+      "x": 0.8,
       "y": 0.7,
       "uniqueID": "id-1365458",
       "name": "Cross-Lead Overlaps",
