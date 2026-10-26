@@ -1485,6 +1485,10 @@
         {
           "name": "Shape6",
           "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "Shape7",
+          "ioValue": "__GEOMETRY_INPUT__"
         }
       ]
     },
@@ -4271,6 +4275,10 @@
             {
               "name": "Shape4",
               "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "Shape5",
+              "ioValue": "__GEOMETRY_INPUT__"
             }
           ]
         },
@@ -4546,6 +4554,255 @@
               "ioValue": 0
             }
           ]
+        },
+        {
+          "atomType": "Molecule",
+          "x": 0.4,
+          "y": 1,
+          "uniqueID": "id-1365760",
+          "name": "4-Start P2 and 4-Start P1.5 Overlap",
+          "ioValues": [
+            {
+              "name": "Leadscrews",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "topLevel": false,
+          "allAtoms": [
+            {
+              "atomType": "Output",
+              "x": 1,
+              "y": 0.5,
+              "uniqueID": "id-1365762",
+              "ioValues": [
+                {
+                  "name": "number or geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Input",
+              "x": 0,
+              "y": 0.2,
+              "uniqueID": "id-1365764",
+              "name": "Leadscrews",
+              "type": "geometry",
+              "options": []
+            },
+            {
+              "atomType": "ExtractTag",
+              "x": 0.3,
+              "y": 0.3,
+              "uniqueID": "id-1365767",
+              "name": "Extract 4-Start",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ],
+              "tagIndex": 0,
+              "selectedTags": [
+                "4-Start"
+              ],
+              "includeUntagged": false,
+              "notKeepOut": false
+            },
+            {
+              "atomType": "ExtractTag",
+              "x": 0.4,
+              "y": 0.3,
+              "uniqueID": "id-1365770",
+              "name": "Extract Right Hand Thread",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ],
+              "tagIndex": 0,
+              "selectedTags": [
+                "Right Hand Thread"
+              ],
+              "includeUntagged": false,
+              "notKeepOut": false
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.3,
+              "uniqueID": "id-1365773",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": 0
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -30
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
+                }
+              ]
+            },
+            {
+              "atomType": "ExtractTag",
+              "x": 0.3,
+              "y": 0.7,
+              "uniqueID": "id-1365779",
+              "name": "Extract 4-Start P1.5",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ],
+              "tagIndex": 0,
+              "selectedTags": [
+                "4-Start P1.5"
+              ],
+              "includeUntagged": false,
+              "notKeepOut": false
+            },
+            {
+              "atomType": "ExtractTag",
+              "x": 0.4,
+              "y": 0.7,
+              "uniqueID": "id-1365782",
+              "name": "Extract Left Hand Thread",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ],
+              "tagIndex": 0,
+              "selectedTags": [
+                "Left Hand Thread"
+              ],
+              "includeUntagged": false,
+              "notKeepOut": false
+            },
+            {
+              "atomType": "Move",
+              "x": 0.6,
+              "y": 0.7,
+              "uniqueID": "id-1365785",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "xDist",
+                  "ioValue": -20
+                },
+                {
+                  "name": "yDist",
+                  "ioValue": -50
+                },
+                {
+                  "name": "zDist",
+                  "ioValue": 0
+                }
+              ]
+            },
+            {
+              "atomType": "Intersection",
+              "x": 0.8,
+              "y": 0.5,
+              "uniqueID": "id-1365791",
+              "ioValues": [
+                {
+                  "name": "geometry1",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "geometry2",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            }
+          ],
+          "allConnectors": [
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365764",
+              "ap2ID": "id-1365767"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365764",
+              "ap2ID": "id-1365779"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365767",
+              "ap2ID": "id-1365770"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365770",
+              "ap2ID": "id-1365773"
+            },
+            {
+              "ap2Name": "geometry1",
+              "ap1ID": "id-1365773",
+              "ap2ID": "id-1365791"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365779",
+              "ap2ID": "id-1365782"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365782",
+              "ap2ID": "id-1365785"
+            },
+            {
+              "ap2Name": "geometry2",
+              "ap1ID": "id-1365785",
+              "ap2ID": "id-1365791"
+            },
+            {
+              "ap2Name": "number or geometry",
+              "ap1ID": "id-1365791",
+              "ap2ID": "id-1365762"
+            }
+          ],
+          "fileTypeVersion": 1
+        },
+        {
+          "atomType": "Move",
+          "x": 0.6,
+          "y": 1,
+          "uniqueID": "id-1365795",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "xDist",
+              "ioValue": 30
+            },
+            {
+              "name": "yDist",
+              "ioValue": 0
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
         }
       ],
       "allConnectors": [
@@ -4563,6 +4820,11 @@
           "ap2Name": "Leadscrews",
           "ap1ID": "id-1365462",
           "ap2ID": "id-1365589"
+        },
+        {
+          "ap2Name": "Leadscrews",
+          "ap1ID": "id-1365462",
+          "ap2ID": "id-1365760"
         },
         {
           "ap2Name": "geometry",
@@ -4598,6 +4860,16 @@
           "ap2Name": "Shape3",
           "ap1ID": "id-1365656",
           "ap2ID": "id-1365535"
+        },
+        {
+          "ap2Name": "geometry",
+          "ap1ID": "id-1365760",
+          "ap2ID": "id-1365795"
+        },
+        {
+          "ap2Name": "Shape4",
+          "ap1ID": "id-1365795",
+          "ap2ID": "id-1365535"
         }
       ],
       "fileTypeVersion": 1
@@ -4619,6 +4891,491 @@
         {
           "name": "yDist",
           "ioValue": 30
+        },
+        {
+          "name": "zDist",
+          "ioValue": 0
+        }
+      ]
+    },
+    {
+      "atomType": "Molecule",
+      "x": 0.3,
+      "y": 1,
+      "uniqueID": "id-1365663",
+      "name": "4-Start P1.5 Leadscrews (TR8x6 P1.5)",
+      "ioValues": [
+        {
+          "name": "Length",
+          "ioValue": 8
+        }
+      ],
+      "topLevel": false,
+      "allAtoms": [
+        {
+          "atomType": "Output",
+          "x": 1,
+          "y": 0.5,
+          "uniqueID": "id-1365665",
+          "ioValues": [
+            {
+              "name": "number or geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ]
+        },
+        {
+          "atomType": "Input",
+          "x": 0,
+          "y": 0.2,
+          "uniqueID": "id-1365667",
+          "name": "Length",
+          "type": "number",
+          "options": []
+        },
+        {
+          "atomType": "Molecule",
+          "x": 0.3,
+          "y": 0.3,
+          "uniqueID": "id-1365670",
+          "name": "TR8x6 (P1.5) Leadscrew",
+          "ioValues": [
+            {
+              "name": "Length",
+              "ioValue": 8
+            }
+          ],
+          "topLevel": false,
+          "allAtoms": [
+            {
+              "atomType": "Output",
+              "x": 1,
+              "y": 0.5,
+              "uniqueID": "id-1365672",
+              "ioValues": [
+                {
+                  "name": "number or geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Input",
+              "x": 0,
+              "y": 0.2,
+              "uniqueID": "id-1365674",
+              "name": "Length",
+              "type": "number",
+              "options": []
+            },
+            {
+              "atomType": "Code",
+              "x": 0.4,
+              "y": 0.5,
+              "uniqueID": "id-1365677",
+              "ioValues": [
+                {
+                  "name": "color",
+                  "ioValue": "#B8BCC2",
+                  "currentEquation": "#B8BCC2"
+                },
+                {
+                  "name": "length",
+                  "ioValue": 8
+                },
+                {
+                  "name": "majorDiameter",
+                  "ioValue": 8
+                },
+                {
+                  "name": "pitch",
+                  "ioValue": 1.5
+                },
+                {
+                  "name": "starts",
+                  "ioValue": 4,
+                  "currentEquation": "4"
+                },
+                {
+                  "name": "threadDepth",
+                  "ioValue": 0.9
+                },
+                {
+                  "name": "leftHand",
+                  "ioValue": false
+                },
+                {
+                  "name": "keepEvery",
+                  "ioValue": 1
+                },
+                {
+                  "name": "clearance",
+                  "ioValue": 0.01
+                }
+              ],
+              "interpreterVersion": 1,
+              "code": "/**\n * TR8 leadscrew: 8 mm trapezoidal thread, 2 mm pitch, multi-start (lead = pitch * starts).\n *\n * The screw's cross-section is drawn as a lobed outline (crest arc, flank,\n * root arc, flank for each start) and extruded with one full twist per lead.\n * This makes a true right-hand helicoid as a single solid with no booleans,\n * which OpenCascade handles far more reliably than fusing helical sweeps.\n * A left-hand screw is the right-hand one mirrored.\n *\n * keepEvery leaves out threads: 1 keeps every start, 2 keeps every other\n * start (the omitted ones are cut down to the root diameter), and so on.\n *\n * clearance shrinks the crest and root radii, as a running fit would. A tiny\n * one (0.01 mm) also keeps OpenCascade from failing on intersections with\n * screws of a different lead, whose crest and root would otherwise nearly\n * coincide.\n */\nfunction run(\n  length: number = 300, // mm\n  majorDiameter: number = 8, // mm\n  pitch: number = 2, // mm, axial distance between neighbouring teeth\n  starts: number = 4,\n  threadDepth: number = 1.25, // mm, crest to root\n  leftHand: boolean = false,\n  color: string = \"#B8BCC2\",\n  keepEvery: number = 1,\n  clearance: number = 0, // mm, radial\n): Assembly {\n  const lead = pitch * starts;\n  const rMajor = majorDiameter / 2 - clearance;\n  const rMinor = majorDiameter / 2 - threadDepth - clearance;\n\n  // Axial widths of each section of one tooth (30 degree trapezoid)\n  const crest = 0.366 * pitch; // ISO 2904 crest width\n  const flank = threadDepth * Math.tan((15 * Math.PI) / 180);\n  const root = pitch - crest - 2 * flank;\n\n  // In the twisted section, axial distance z maps to angle 2*pi*z/lead\n  const toAngle = (z: number) => (2 * Math.PI * z) / lead;\n  const polar = (r: number, a: number): [number, number] => [r * Math.cos(a), r * Math.sin(a)];\n  const hasTooth = (i: number) => (i % starts) % keepEvery === 0;\n  const crestR = (i: number) => (hasTooth(i) ? rMajor : rMinor);\n\n  let a = 0;\n  let pen = replicad.draw(polar(crestR(0), a));\n  // Each segment is an arc through its midpoint; the flanks are\n  // Archimedean spirals, which a three-point arc follows closely\n  const segment = (r0: number, r1: number, width: number, end = a + toAngle(width)) => {\n    pen = pen.threePointsArcTo(polar(r1, end), polar((r0 + r1) / 2, (a + end) / 2));\n    a = end;\n  };\n  for (let i = 0; i < starts; i++) {\n    segment(crestR(i), crestR(i), crest);\n    segment(crestR(i), rMinor, flank);\n    segment(rMinor, rMinor, root);\n    // The last flank closes back to the start point\n    const end = i < starts - 1 ? undefined : 2 * Math.PI;\n    segment(rMinor, crestR(i + 1), flank, end);\n  }\n\n  let screw = pen\n    .close()\n    .sketchOnPlane(\"XY\")\n    .extrude(length, { twistAngle: (360 * length) / lead });\n  if (leftHand) screw = screw.mirror(\"YZ\");\n\n  return new Assembly({ geometry: screw, color, tags: [\"leadscrew\"] });\n}\n",
+              "compiledCode": "\"use strict\";\n/**\n * TR8 leadscrew: 8 mm trapezoidal thread, 2 mm pitch, multi-start (lead = pitch * starts).\n *\n * The screw's cross-section is drawn as a lobed outline (crest arc, flank,\n * root arc, flank for each start) and extruded with one full twist per lead.\n * This makes a true right-hand helicoid as a single solid with no booleans,\n * which OpenCascade handles far more reliably than fusing helical sweeps.\n * A left-hand screw is the right-hand one mirrored.\n *\n * keepEvery leaves out threads: 1 keeps every start, 2 keeps every other\n * start (the omitted ones are cut down to the root diameter), and so on.\n *\n * clearance shrinks the crest and root radii, as a running fit would. A tiny\n * one (0.01 mm) also keeps OpenCascade from failing on intersections with\n * screws of a different lead, whose crest and root would otherwise nearly\n * coincide.\n */\nfunction run(length = 300, // mm\nmajorDiameter = 8, // mm\npitch = 2, // mm, axial distance between neighbouring teeth\nstarts = 4, threadDepth = 1.25, // mm, crest to root\nleftHand = false, color = \"#B8BCC2\", keepEvery = 1, clearance = 0) {\n    const lead = pitch * starts;\n    const rMajor = majorDiameter / 2 - clearance;\n    const rMinor = majorDiameter / 2 - threadDepth - clearance;\n    // Axial widths of each section of one tooth (30 degree trapezoid)\n    const crest = 0.366 * pitch; // ISO 2904 crest width\n    const flank = threadDepth * Math.tan((15 * Math.PI) / 180);\n    const root = pitch - crest - 2 * flank;\n    // In the twisted section, axial distance z maps to angle 2*pi*z/lead\n    const toAngle = (z) => (2 * Math.PI * z) / lead;\n    const polar = (r, a) => [r * Math.cos(a), r * Math.sin(a)];\n    const hasTooth = (i) => (i % starts) % keepEvery === 0;\n    const crestR = (i) => (hasTooth(i) ? rMajor : rMinor);\n    let a = 0;\n    let pen = replicad.draw(polar(crestR(0), a));\n    // Each segment is an arc through its midpoint; the flanks are\n    // Archimedean spirals, which a three-point arc follows closely\n    const segment = (r0, r1, width, end = a + toAngle(width)) => {\n        pen = pen.threePointsArcTo(polar(r1, end), polar((r0 + r1) / 2, (a + end) / 2));\n        a = end;\n    };\n    for (let i = 0; i < starts; i++) {\n        segment(crestR(i), crestR(i), crest);\n        segment(crestR(i), rMinor, flank);\n        segment(rMinor, rMinor, root);\n        // The last flank closes back to the start point\n        const end = i < starts - 1 ? undefined : 2 * Math.PI;\n        segment(rMinor, crestR(i + 1), flank, end);\n    }\n    let screw = pen\n        .close()\n        .sketchOnPlane(\"XY\")\n        .extrude(length, { twistAngle: (360 * length) / lead });\n    if (leftHand)\n        screw = screw.mirror(\"YZ\");\n    return new Assembly({ geometry: screw, color, tags: [\"leadscrew\"] });\n}\n"
+            },
+            {
+              "atomType": "Add-BOM-Tag",
+              "x": 0.6,
+              "y": 0.5,
+              "uniqueID": "id-1365686",
+              "name": "Add BOM Tag",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "Item Name",
+                  "ioValue": "TR8x6 (P1.5) leadscrew, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel",
+                  "currentEquation": "TR8x6 (P1.5) leadscrew, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel"
+                },
+                {
+                  "name": "Number Needed",
+                  "ioValue": 1
+                },
+                {
+                  "name": "Cost (USD)",
+                  "ioValue": 0
+                },
+                {
+                  "name": "Source Link",
+                  "ioValue": ""
+                }
+              ],
+              "BOMitem": {
+                "BOMitemName": "TR8x6 (P1.5) leadscrew, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel",
+                "numberNeeded": 1,
+                "costUSD": 0,
+                "source": ""
+              }
+            }
+          ],
+          "allConnectors": [
+            {
+              "ap2Name": "length",
+              "ap1ID": "id-1365674",
+              "ap2ID": "id-1365677"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365677",
+              "ap2ID": "id-1365686"
+            },
+            {
+              "ap2Name": "number or geometry",
+              "ap1ID": "id-1365686",
+              "ap2ID": "id-1365672"
+            }
+          ],
+          "fileTypeVersion": 1
+        },
+        {
+          "atomType": "Molecule",
+          "x": 0.3,
+          "y": 0.7,
+          "uniqueID": "id-1365693",
+          "name": "TR8x6 (P1.5) Leadscrew Left Hand",
+          "ioValues": [
+            {
+              "name": "Length",
+              "ioValue": 8
+            }
+          ],
+          "topLevel": false,
+          "allAtoms": [
+            {
+              "atomType": "Output",
+              "x": 1,
+              "y": 0.5,
+              "uniqueID": "id-1365695",
+              "ioValues": [
+                {
+                  "name": "number or geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                }
+              ]
+            },
+            {
+              "atomType": "Input",
+              "x": 0,
+              "y": 0.2,
+              "uniqueID": "id-1365697",
+              "name": "Length",
+              "type": "number",
+              "options": []
+            },
+            {
+              "atomType": "Code",
+              "x": 0.4,
+              "y": 0.5,
+              "uniqueID": "id-1365700",
+              "ioValues": [
+                {
+                  "name": "color",
+                  "ioValue": "#B8BCC2",
+                  "currentEquation": "#B8BCC2"
+                },
+                {
+                  "name": "length",
+                  "ioValue": 8
+                },
+                {
+                  "name": "majorDiameter",
+                  "ioValue": 8
+                },
+                {
+                  "name": "pitch",
+                  "ioValue": 1.5
+                },
+                {
+                  "name": "starts",
+                  "ioValue": 4,
+                  "currentEquation": "4"
+                },
+                {
+                  "name": "threadDepth",
+                  "ioValue": 0.9
+                },
+                {
+                  "name": "leftHand",
+                  "ioValue": true
+                },
+                {
+                  "name": "keepEvery",
+                  "ioValue": 1
+                },
+                {
+                  "name": "clearance",
+                  "ioValue": 0.01
+                }
+              ],
+              "interpreterVersion": 1,
+              "code": "/**\n * TR8 leadscrew: 8 mm trapezoidal thread, 2 mm pitch, multi-start (lead = pitch * starts).\n *\n * The screw's cross-section is drawn as a lobed outline (crest arc, flank,\n * root arc, flank for each start) and extruded with one full twist per lead.\n * This makes a true right-hand helicoid as a single solid with no booleans,\n * which OpenCascade handles far more reliably than fusing helical sweeps.\n * A left-hand screw is the right-hand one mirrored.\n *\n * keepEvery leaves out threads: 1 keeps every start, 2 keeps every other\n * start (the omitted ones are cut down to the root diameter), and so on.\n *\n * clearance shrinks the crest and root radii, as a running fit would. A tiny\n * one (0.01 mm) also keeps OpenCascade from failing on intersections with\n * screws of a different lead, whose crest and root would otherwise nearly\n * coincide.\n */\nfunction run(\n  length: number = 300, // mm\n  majorDiameter: number = 8, // mm\n  pitch: number = 2, // mm, axial distance between neighbouring teeth\n  starts: number = 4,\n  threadDepth: number = 1.25, // mm, crest to root\n  leftHand: boolean = false,\n  color: string = \"#B8BCC2\",\n  keepEvery: number = 1,\n  clearance: number = 0, // mm, radial\n): Assembly {\n  const lead = pitch * starts;\n  const rMajor = majorDiameter / 2 - clearance;\n  const rMinor = majorDiameter / 2 - threadDepth - clearance;\n\n  // Axial widths of each section of one tooth (30 degree trapezoid)\n  const crest = 0.366 * pitch; // ISO 2904 crest width\n  const flank = threadDepth * Math.tan((15 * Math.PI) / 180);\n  const root = pitch - crest - 2 * flank;\n\n  // In the twisted section, axial distance z maps to angle 2*pi*z/lead\n  const toAngle = (z: number) => (2 * Math.PI * z) / lead;\n  const polar = (r: number, a: number): [number, number] => [r * Math.cos(a), r * Math.sin(a)];\n  const hasTooth = (i: number) => (i % starts) % keepEvery === 0;\n  const crestR = (i: number) => (hasTooth(i) ? rMajor : rMinor);\n\n  let a = 0;\n  let pen = replicad.draw(polar(crestR(0), a));\n  // Each segment is an arc through its midpoint; the flanks are\n  // Archimedean spirals, which a three-point arc follows closely\n  const segment = (r0: number, r1: number, width: number, end = a + toAngle(width)) => {\n    pen = pen.threePointsArcTo(polar(r1, end), polar((r0 + r1) / 2, (a + end) / 2));\n    a = end;\n  };\n  for (let i = 0; i < starts; i++) {\n    segment(crestR(i), crestR(i), crest);\n    segment(crestR(i), rMinor, flank);\n    segment(rMinor, rMinor, root);\n    // The last flank closes back to the start point\n    const end = i < starts - 1 ? undefined : 2 * Math.PI;\n    segment(rMinor, crestR(i + 1), flank, end);\n  }\n\n  let screw = pen\n    .close()\n    .sketchOnPlane(\"XY\")\n    .extrude(length, { twistAngle: (360 * length) / lead });\n  if (leftHand) screw = screw.mirror(\"YZ\");\n\n  return new Assembly({ geometry: screw, color, tags: [\"leadscrew\"] });\n}\n",
+              "compiledCode": "\"use strict\";\n/**\n * TR8 leadscrew: 8 mm trapezoidal thread, 2 mm pitch, multi-start (lead = pitch * starts).\n *\n * The screw's cross-section is drawn as a lobed outline (crest arc, flank,\n * root arc, flank for each start) and extruded with one full twist per lead.\n * This makes a true right-hand helicoid as a single solid with no booleans,\n * which OpenCascade handles far more reliably than fusing helical sweeps.\n * A left-hand screw is the right-hand one mirrored.\n *\n * keepEvery leaves out threads: 1 keeps every start, 2 keeps every other\n * start (the omitted ones are cut down to the root diameter), and so on.\n *\n * clearance shrinks the crest and root radii, as a running fit would. A tiny\n * one (0.01 mm) also keeps OpenCascade from failing on intersections with\n * screws of a different lead, whose crest and root would otherwise nearly\n * coincide.\n */\nfunction run(length = 300, // mm\nmajorDiameter = 8, // mm\npitch = 2, // mm, axial distance between neighbouring teeth\nstarts = 4, threadDepth = 1.25, // mm, crest to root\nleftHand = false, color = \"#B8BCC2\", keepEvery = 1, clearance = 0) {\n    const lead = pitch * starts;\n    const rMajor = majorDiameter / 2 - clearance;\n    const rMinor = majorDiameter / 2 - threadDepth - clearance;\n    // Axial widths of each section of one tooth (30 degree trapezoid)\n    const crest = 0.366 * pitch; // ISO 2904 crest width\n    const flank = threadDepth * Math.tan((15 * Math.PI) / 180);\n    const root = pitch - crest - 2 * flank;\n    // In the twisted section, axial distance z maps to angle 2*pi*z/lead\n    const toAngle = (z) => (2 * Math.PI * z) / lead;\n    const polar = (r, a) => [r * Math.cos(a), r * Math.sin(a)];\n    const hasTooth = (i) => (i % starts) % keepEvery === 0;\n    const crestR = (i) => (hasTooth(i) ? rMajor : rMinor);\n    let a = 0;\n    let pen = replicad.draw(polar(crestR(0), a));\n    // Each segment is an arc through its midpoint; the flanks are\n    // Archimedean spirals, which a three-point arc follows closely\n    const segment = (r0, r1, width, end = a + toAngle(width)) => {\n        pen = pen.threePointsArcTo(polar(r1, end), polar((r0 + r1) / 2, (a + end) / 2));\n        a = end;\n    };\n    for (let i = 0; i < starts; i++) {\n        segment(crestR(i), crestR(i), crest);\n        segment(crestR(i), rMinor, flank);\n        segment(rMinor, rMinor, root);\n        // The last flank closes back to the start point\n        const end = i < starts - 1 ? undefined : 2 * Math.PI;\n        segment(rMinor, crestR(i + 1), flank, end);\n    }\n    let screw = pen\n        .close()\n        .sketchOnPlane(\"XY\")\n        .extrude(length, { twistAngle: (360 * length) / lead });\n    if (leftHand)\n        screw = screw.mirror(\"YZ\");\n    return new Assembly({ geometry: screw, color, tags: [\"leadscrew\"] });\n}\n"
+            },
+            {
+              "atomType": "Add-BOM-Tag",
+              "x": 0.6,
+              "y": 0.5,
+              "uniqueID": "id-1365709",
+              "name": "Add BOM Tag",
+              "ioValues": [
+                {
+                  "name": "geometry",
+                  "ioValue": "__GEOMETRY_INPUT__"
+                },
+                {
+                  "name": "Item Name",
+                  "ioValue": "TR8x6 (P1.5) leadscrew, left-hand, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel",
+                  "currentEquation": "TR8x6 (P1.5) leadscrew, left-hand, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel"
+                },
+                {
+                  "name": "Number Needed",
+                  "ioValue": 1
+                },
+                {
+                  "name": "Cost (USD)",
+                  "ioValue": 0
+                },
+                {
+                  "name": "Source Link",
+                  "ioValue": ""
+                }
+              ],
+              "BOMitem": {
+                "BOMitemName": "TR8x6 (P1.5) leadscrew, left-hand, 6 mm lead, 1.5 mm pitch, 4-start, stainless steel",
+                "numberNeeded": 1,
+                "costUSD": 0,
+                "source": ""
+              }
+            }
+          ],
+          "allConnectors": [
+            {
+              "ap2Name": "length",
+              "ap1ID": "id-1365697",
+              "ap2ID": "id-1365700"
+            },
+            {
+              "ap2Name": "geometry",
+              "ap1ID": "id-1365700",
+              "ap2ID": "id-1365709"
+            },
+            {
+              "ap2Name": "number or geometry",
+              "ap1ID": "id-1365709",
+              "ap2ID": "id-1365695"
+            }
+          ],
+          "fileTypeVersion": 1
+        },
+        {
+          "atomType": "Tag",
+          "x": 0.5,
+          "y": 0.3,
+          "uniqueID": "id-1365716",
+          "name": "Right Hand Thread",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "tags": [
+            "Right Hand Thread"
+          ]
+        },
+        {
+          "atomType": "Tag",
+          "x": 0.5,
+          "y": 0.7,
+          "uniqueID": "id-1365719",
+          "name": "Left Hand Thread",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "tags": [
+            "Left Hand Thread"
+          ]
+        },
+        {
+          "atomType": "Move",
+          "x": 0.6,
+          "y": 0.7,
+          "uniqueID": "id-1365722",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "xDist",
+              "ioValue": 20
+            },
+            {
+              "name": "yDist",
+              "ioValue": 0
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Assembly",
+          "x": 0.8,
+          "y": 0.5,
+          "uniqueID": "id-1365728",
+          "ioValues": [
+            {
+              "name": "makeDisjoint",
+              "ioValue": false
+            },
+            {
+              "name": "Shape 1",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "Shape2",
+              "ioValue": "__GEOMETRY_INPUT__"
+            },
+            {
+              "name": "Shape3",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ]
+        },
+        {
+          "atomType": "Tag",
+          "x": 0.9,
+          "y": 0.5,
+          "uniqueID": "id-1365732",
+          "name": "4-Start P1.5",
+          "ioValues": [
+            {
+              "name": "geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
+            }
+          ],
+          "tags": [
+            "4-Start P1.5"
+          ]
+        }
+      ],
+      "allConnectors": [
+        {
+          "ap2Name": "Length",
+          "ap1ID": "id-1365667",
+          "ap2ID": "id-1365670"
+        },
+        {
+          "ap2Name": "Length",
+          "ap1ID": "id-1365667",
+          "ap2ID": "id-1365693"
+        },
+        {
+          "ap2Name": "geometry",
+          "ap1ID": "id-1365670",
+          "ap2ID": "id-1365716"
+        },
+        {
+          "ap2Name": "geometry",
+          "ap1ID": "id-1365693",
+          "ap2ID": "id-1365719"
+        },
+        {
+          "ap2Name": "Shape 1",
+          "ap1ID": "id-1365716",
+          "ap2ID": "id-1365728"
+        },
+        {
+          "ap2Name": "geometry",
+          "ap1ID": "id-1365719",
+          "ap2ID": "id-1365722"
+        },
+        {
+          "ap2Name": "Shape2",
+          "ap1ID": "id-1365722",
+          "ap2ID": "id-1365728"
+        },
+        {
+          "ap2Name": "geometry",
+          "ap1ID": "id-1365728",
+          "ap2ID": "id-1365732"
+        },
+        {
+          "ap2Name": "number or geometry",
+          "ap1ID": "id-1365732",
+          "ap2ID": "id-1365665"
+        }
+      ],
+      "fileTypeVersion": 1
+    },
+    {
+      "atomType": "Move",
+      "x": 0.5,
+      "y": 1,
+      "uniqueID": "id-1365753",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "xDist",
+          "ioValue": 0
+        },
+        {
+          "name": "yDist",
+          "ioValue": 50
         },
         {
           "name": "zDist",
@@ -4652,6 +5409,11 @@
       "ap2Name": "Length",
       "ap1ID": "id-1364037",
       "ap2ID": "id-1365324"
+    },
+    {
+      "ap2Name": "Length",
+      "ap1ID": "id-1364037",
+      "ap2ID": "id-1365663"
     },
     {
       "ap2Name": "geometry",
@@ -4721,6 +5483,16 @@
     {
       "ap2Name": "Shape4",
       "ap1ID": "id-1365638",
+      "ap2ID": "id-1364609"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-1365663",
+      "ap2ID": "id-1365753"
+    },
+    {
+      "ap2Name": "Shape6",
+      "ap1ID": "id-1365753",
       "ap2ID": "id-1364609"
     }
   ],
